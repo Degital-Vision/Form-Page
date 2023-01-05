@@ -26,7 +26,8 @@
       <div class="content w-full">
         <!-- Start Head -->
         <div class="head bg-white p-15 between-flex">
-          <div class="search p-relative" style="visibility: hidden;">
+          <div class="p-relative">
+            <h2>Hallo <span id="AdminName" style="color: #0a1951;">Admin..</span></h2>
             <!-- <input class="p-10" type="search" placeholder="Type A Keyword" /> -->
           </div>
           <div class="icons d-flex align-center">
@@ -58,12 +59,18 @@
 
             <a class="Orders-Accepted active d-flex align-center fs-14 c-black rad-6 p-10" style="display: flex; justify-content: end; cursor: pointer;" href="Dashboard-Accepted.html">
               <span style="font-weight: bold; font-size:20px;">المقبولين</span>
-              <i class="fa-regular fa-circle-user fa-fw" style="font-weight: bold; font-size:20px; margin-left: 10px; color: green; border-radius: 50%;"></i>            </a>
+              <i class="fa-regular fa-circle-user fa-fw" style="font-weight: bold; font-size:20px; margin-left: 10px; color: green; border-radius: 50%;"></i>
+            </a>
 
             <a class="Orders-Accepted active d-flex align-center fs-14 c-black rad-6 p-10" style="display: flex; justify-content: end; cursor: pointer;" href="Dashboard-Archived.html">
-                <span style="font-weight: bold; font-size:20px;">الارشيف</span>
-                <i class="fa-solid fa-folder-open fa-fw" style="font-weight: bold; font-size:20px; margin-left: 10px; color: gray;"></i>
-              </a>
+              <span style="font-weight: bold; font-size:20px;">الارشيف</span>
+              <i class="fa-solid fa-folder-open fa-fw" style="font-weight: bold; font-size:20px; margin-left: 10px; color: gray;"></i>
+            </a>
+
+            <a class="Orders-Accepted active d-flex align-center fs-14 c-black rad-6 p-10" style="display: flex; justify-content: end; cursor: pointer; background: rgba(137, 8, 8, 0.676); color: white;" id="logOut-digital">
+              <span style="font-weight: bold; font-size:20px;">تسجيل الخروج</span>
+              <i class="fas fa-sign-out-alt fa-fw" style="font-weight: bold; font-size:20px; margin-left: 10px; color: white;"></i>
+            </a>
 
           </li>
           
@@ -107,7 +114,110 @@
   };
 
 
-  //////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+/*start login cods*/
+
+
+
+/* 01 start fuction to set id on all Accounts */
+
+setIdForAllAccounts();
+async function setIdForAllAccounts(){
+    await getDocs(collection(db,"accounts")).then(snap=>{
+        snap.docs.forEach(el=>{
+            setDoc(doc(db,"accounts",el.id), {
+                ...el.data(),
+                id: el.id,
+            })
+        })
+    })
+};
+
+/* 01 end fuction to set id on all Accounts */
+
+
+
+/* 02 start get AllAccounts */
+
+let AllAccounts;
+
+await getCit(db, 'accounts').then(async (e) => {
+  AllAccounts = e;
+})
+
+async function getUserDataWithId(id){
+  return AllAccounts.find(e=>e.id==id);
+}
+
+/* 02 end get All Accounts */
+
+
+
+/* 04 start check and get user doc */
+
+let mainPersonData;
+let docId = await localStorage.getItem("doc-digital-id");
+
+if(docId!==null&&docId.trim()!==''){
+    // document.querySelector('.profile-btn').dataset.personid=docId;
+    mainPersonData=await getUserDataWithId(docId);
+    document.querySelector("#AdminName").textContent=`${mainPersonData.username}..`;
+} else {
+  location.href="./login/login.html"
+}
+
+/* 04 end check and get user doc */
+
+
+
+document.querySelector("#logOut-digital").addEventListener("click",()=>{
+
+  localStorage.setItem("doc-digital-id","");
+  location.href="./login/login.html";
+
+});
+
+
+/*end login cods*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* 1 start fuction to set id on all Orders */
