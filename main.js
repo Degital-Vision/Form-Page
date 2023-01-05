@@ -58,7 +58,48 @@ function swool(){
             <input type="number" placeholder="" dir="auto" autocomplete="off" id="phone">
     
             <label for="active">:النشاط</label>
-            <input type="text" dir="auto" autocomplete="off" id="active">
+            <select dir="auto" id="active" name="carlist" form="carform" style="font-weiht: bold; padding: 5px 5px; width: 98%; margin: auto 10px auto 0px; border: 2px solid black; border-radius: 6px;">
+                <option value=""></option>
+                <option value="تسويق الكتروني">
+                تسويق الكتروني
+                </option>
+                <option value="تصمصم موقع الكترونية">
+                تصمصم موقع الكترونية
+                </option>
+                <option value="تصمصم متجر الكترونية">
+                تصمصم متجر الكترونية
+                </option>
+                <option value="تصميم متجر علي منصة سلة">
+                تصميم متجر علي منصة سلة
+                </option>
+                <option value="تصميم متجر علي منصة زيد">
+                تصميم متجر علي منصة زيد
+                </option>
+                <option value="ربط خدامات">
+                ربط خدامات
+                </option>
+                <option value="نقاط بيع">
+                نقاط بيع
+                </option>
+                <option value="صيانة متجر سلة">
+                صيانة متجر سلة
+                </option>
+                <option value="تصميم منيو مطعم الكتروني">
+                تصميم منيو مطعم الكتروني
+                </option>
+                <option value="برامج محاسيبة متاكملة">
+                برامج محاسيبة متاكملة
+                </option>
+                <option value="برامج معامل تحليل طبية">
+                برامج معامل تحليل طبية
+                </option>
+                <option value="برامج مستوصفات طبية">
+                برامج مستوصفات طبية
+                </option>
+                <option value="audi">
+                شي اخر..
+                </option>
+            </select>
     
             <label for="city">:المدينة</label>
             <input type="text" dir="rtl" autocomplete="off" id="city" value="">
