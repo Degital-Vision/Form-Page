@@ -41,10 +41,19 @@
           background-color: white;
       }
 
-      .fl-table td, .fl-table th {
+      .fl-table td{
           text-align: center;
           padding: 8px;
+          border: 2px solid #324960;
       }
+
+
+      .fl-table th {
+          text-align: center;
+          padding: 8px;
+          border: 2px solid rgb(0, 0, 0);
+      }
+
 
       .fl-table td {
           border-right: 1px solid #f8f8f8;
@@ -52,19 +61,14 @@
           font-family: 'Cairo', sans-serif;
       }
 
+
       .fl-table thead th {
-          color: #ffffff;
-          background: #4FC3A1;
-      }
-
-
-      .fl-table thead th:nth-child(odd) {
           color: #ffffff;
           background: #324960;
       }
 
       .fl-table tr {
-        border: 1px solid rgb(200, 200, 200);
+        border: 1px solid rgb(0, 0, 0);
       }
 
       /* Responsive */
@@ -154,6 +158,7 @@
           </div>
         </div>
         <!-- End Head -->
+        <button style="font-size: 18px; font-family:cairo; cursor:pointer; width: 120px; margin: 20px; border-radius: 10px; background: #0a1951; color: white; padding: 5px 0px; font-weight: 600;" class="addNewOrder">اضافة عميل</button>
         <h1 class="p-relative" style="text-align: center;">العملاء</h1>
         <div style="overflow: auto;">
 
@@ -793,20 +798,7 @@ function swool(orderData){
           };
 
 
-          // if((name).trim()!==""&&(phone).trim()!==""&&(active).trim()!==""&&(city).trim()!==""){
-          //     SetData(name,phone,active,city);
-          //     Swal.fire('تم الارسال سنقوم بالتواصل معك ', '', 'success').then((e)=>{
-          //         window.close();
-          //     });
-          // }else {
-          //     Swal.fire({
-          //         icon: 'error',
-          //         title: 'Oops...',
-          //         text: 'برجاء كتابة البيانات بشكل صحيح',
-          //     }).then((x)=>{
-          //         swool();
-          //     });
-          // }
+          
 
 
           
@@ -820,14 +812,184 @@ function swool(orderData){
 
 /* end edit order */
 
-
-
 };
 
 /* 4 end set Orders Accepted and orders archived*/
 
 
 
+
+
+
+
+/* 5 start add new order */
+
+document.querySelector(".addNewOrder").addEventListener("click",()=>{
+
+
+  Swal.fire({
+      title: ' اضافة عميل جديد ',
+      html: `
+      
+      
+      <div class="mainForm" style="overflow-y: hidden; overflow-c: scroll; font-size: 17px!important; font-family: 'Cairo', sans-serif; font-weight: bold!important;">
+
+          <label for="name">:الاسم</label>
+          <input style="width: 98%;" type="text" dir="auto" autocomplete="off" id="name" value="">
+
+          <label for="phone">رقم الجوال:</label>
+          <input style="width: 98%;" type="number" placeholder="" dir="auto" autocomplete="off" id="phone" value="">
+
+          <label for="active">النشاط:</label>
+          <select value="" dir="auto" id="active" name="carlist" form="carform" style="font-weiht: bold; padding: 5px 5px; width: 98%; margin: auto 10px auto 0px; border: 2px solid black; border-radius: 6px;">
+              <option value=""></option>
+              <option value="تسويق الكتروني">
+              تسويق الكتروني
+              </option>
+              <option value="تصميم موقع الكترونية">
+              تصميم موقع الكترونية
+              </option>
+              <option value="تصميم متجر الكترونية">
+              تصميم متجر الكترونية
+              </option>
+              <option value="تصميم متجر علي منصة سلة">
+              تصميم متجر علي منصة سلة
+              </option>
+              <option value="تصميم متجر علي منصة زيد">
+              تصميم متجر علي منصة زيد
+              </option>
+              <option value="ربط خدامات">
+              ربط خدامات
+              </option>
+              <option value="نقاط بيع">
+              نقاط بيع
+              </option>
+              <option value="صيانة متجر سلة">
+              صيانة متجر سلة
+              </option>
+              <option value="تصميم منيو مطعم الكتروني">
+              تصميم منيو مطعم الكتروني
+              </option>
+              <option value="برامج محاسبية متاكملة">
+              برامج محاسبية متاكملة
+              </option>
+              <option value="برامج معامل تحاليل طبية">
+              برامج معامل تحاليل طبية
+              </option>
+              <option value="برامج مستوصفات طبية">
+              برامج مستوصفات طبية
+              </option>
+              <option value="audi">
+              شي اخر..
+              </option>
+          </select>
+
+          <label for="city">المدينة:</label>
+          <input style="width: 98%;" type="text" dir="rtl" autocomplete="off" id="city" value="">
+
+          <label for="price">المبلغ:</label>
+          <input style="width: 98%;" type="text" dir="rtl" autocomplete="off" id="price" value="">
+
+          <label for="startTime">بداية العقد:</label>
+          <input style="width: 98%;" type="date" dir="rtl" autocomplete="off" id="startTime" value="">
+
+          <label for="endTime">نهاية العقد </label>
+          <input style="width: 98%;" type="date" dir="rtl" autocomplete="off" id="endTime" value="">
+
+      </div>
+      
+      
+      `,
+      confirmButtonText: 'اضافة',
+  }).then((result) => {    
+      if (result.isConfirmed) {
+
+          let name=document.querySelector("#name").value;
+          let phone=document.querySelector("#phone").value;
+          let active=document.querySelector("#active").value;
+          let city=document.querySelector("#city").value;
+          let price=document.querySelector("#price").value;
+          let startTime=document.querySelector("#startTime").value;
+          let endTime=document.querySelector("#endTime").value;
+
+
+
+          AddNewOrder(name,phone,active,city,price,startTime,endTime);
+
+          function AddNewOrder(name,phone,active,city,price,startTime,endTime){
+            addDoc(collection(db,"Persons"), {
+              name: name,
+              phone: phone,
+              city: city,
+              active: active,
+              price: price,
+              startTime: startTime,
+              endTime: endTime,
+              id: "",
+              country_calling_code: "+966",
+              date: Date.now(),
+              isAccepted: true,
+              orderDate: showDate(),
+            }).then(e=>{history.go(0);});
+
+
+          };
+
+
+        
+          
+          
+      };
+  });
+
+});
+
+
+/* 5 end add new order */
+
+
+
+
+/* 1 start function to get data now */
+function showDate(){
+  
+  const d = new Date();
+  
+  let year = d.getFullYear();
+  let month = d.getMonth();
+  let day = d.getDate();
+  let hour = d.getHours();
+  let mint = d.getMinutes();
+  
+  if(mint<10){
+    mint=`0${mint}`
+  }
+  
+  let dateNow;
+
+  console.log(hour)
+
+  if (hour>=12){
+    
+    dateNow= `
+      ${year}/${month+1}/${day}
+      => ${hour-12}:${mint} PM
+      `;
+
+  } else if (hour<=11){
+    
+      dateNow = `
+      
+      ${year}/${month+1}/${day}
+         ${hour}:${mint} AM
+      
+      `;
+  }
+  return dateNow;
+}
+
+
+/* 1 end function to get data now */
 
 
 
