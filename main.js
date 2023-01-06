@@ -119,9 +119,7 @@ function swool(){
 
             if((name).trim()!==""&&(phone).trim()!==""&&(active).trim()!==""&&(city).trim()!==""){
                 SendData(name,phone,active,city);
-                Swal.fire('تم الارسال سنقوم بالتواصل معك ', '', 'success').then((e)=>{
-                    window.close();
-                });
+                
             }else {
                 Swal.fire({
                     icon: 'error',
@@ -164,7 +162,11 @@ async function SendData(name,phone,active,city){
         date: Date.now(),
         orderDate: showDate(),
         country_calling_code: country_calling_code,
-    });
+    }).then(e=>{
+        Swal.fire('تم الارسال سنقوم بالتواصل معك ', '', 'success').then((e)=>{
+            window.close();
+        });
+    })
 
     setIdForAllOrders();
 
