@@ -799,7 +799,9 @@ function swool(orderData){
               date: orderData.date,
               isAccepted: (orderData.isAccepted==undefined)?'':orderData.isAccepted,
               orderDate: orderData.orderDate,
-            }).then(e=>{history.go(0);})
+            }).then(async (e)=>{
+              history.go(0);
+            })
 
             
 
@@ -1003,7 +1005,8 @@ function showDate(){
 
 const colRef= collection(db,"Persons");
 
-onSnapshot(colRef,()=>{
+onSnapshot(colRef,async()=>{
+  await setIdForAllOrders();
   getAllOrdersAccepted();
 });
 
