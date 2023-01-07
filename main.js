@@ -109,16 +109,42 @@ function swool(){
         
         `,
         confirmButtonText: 'ارسال',
-    }).then((result) => {    
+    }).then(async (result) => {    
         if (result.isConfirmed) {
+
+
+            
+            const inputOptions = new Promise(() => {
+                setTimeout(() => {
+
+                }, 4000)
+            })
+            
+            
+            
+  
 
             let name=document.querySelector("#name").value;
             let phone=document.querySelector("#phone").value;
             let active=document.querySelector("#active").value;
             let city=document.querySelector("#city").value;
 
+
+
+            
+
+
             if((name).trim()!==""&&(phone).trim()!==""&&(active).trim()!==""&&(city).trim()!==""){
+
                 SendData(name,phone,active,city);
+
+                await Swal.fire({
+                    title: '..برجاء الانتظار',
+                    input: 'radio',
+                    inputOptions: inputOptions,
+                })
+
+                
                 
             }else {
                 Swal.fire({
@@ -149,6 +175,7 @@ document.querySelector("#simpleBtn").addEventListener("click",()=>{
 
 async function SendData(name,phone,active,city){
 
+    console.log("yes");
     let country_calling_code;
     await fetch("https://ipapi.co/json/").then(e=>e.json()).then(data=>{
         country_calling_code=data.country_calling_code;
@@ -224,7 +251,6 @@ function showDate(){
     
     let dateNow;
 
-    console.log(hour)
 
     if (hour>=12){
       
@@ -326,7 +352,8 @@ function getDiffDate(oldDate){
 function getPersonCity(){
 
     fetch("https://ipapi.co/json/").then(e=>e.json()).then(data=>{
-        translateText(data.city);
+        document.querySelector("#city").value=data.city;
+        // translateText(data.city);
     });
     
     
