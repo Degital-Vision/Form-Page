@@ -475,7 +475,7 @@ async function getAllOrdersArchived(){
   
         let AllPersonsArchived=AllPersons.filter(el=>el.isAccepted==false);
   
-        let AllPersonsNotShow=AllPersons.filter(el=>el.isAccepted!==true&&el.isAccepted!==false);
+        let AllPersonsNotShow=AllPersons.filter(el=>el.isAccepted!==true&&el.isAccepted!==false&&el.name!==undefined);
   
         document.querySelector(".NumberOfOrders").innerHTML=AllPersonsNotShow.length;
   
