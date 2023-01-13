@@ -175,11 +175,25 @@ document.querySelector("#simpleBtn").addEventListener("click",()=>{
 
 async function SendData(name,phone,active,city){
 
-    console.log("yes");
+    
     let country_calling_code;
     await fetch("https://ipapi.co/json/").then(e=>e.json()).then(data=>{
         country_calling_code=data.country_calling_code;
     });
+
+
+    /* Start Send Whatsapp Massage */
+
+    let HelloMassage=`
+    مرحبا ${name} 
+    لقد قمت بطلب ${active}
+    وسوف نتواصل معك قريبآ    
+    `;
+    HelloMassage=HelloMassage.trim();
+    let whatappAPI=`https://karzoun.app/api/send.php?number=${country_calling_code.slice(1)+Number(`${phone}`)}&type=text&message=${encodeURIComponent(HelloMassage)}&instance_id=63C05BF69B191&access_token=1757991908`;
+    fetch(whatappAPI);
+
+    /* End Send Whatsapp Massage */
 
     addDoc(collection(db,"Persons"),{
         name: name,
